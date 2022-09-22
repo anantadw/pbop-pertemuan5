@@ -9,10 +9,11 @@ package com.mycompany.studi.kasus.restoran;
  * @author Ananta D
  */
 public class Restaurant {
-    public String[] nama_makanan;
-    public double[] harga_makanan;
-    public int[] stok;
-    public static byte id = 0;
+    // (1 always keep data private) modifier dari data/fields dibuat private
+    private String[] nama_makanan;
+    private double[] harga_makanan;
+    private int[] stok;
+    private static byte id = 0;
     
     public Restaurant() {
         nama_makanan = new String[10];
@@ -28,13 +29,13 @@ public class Restaurant {
     
     public void tampilMenuMakanan() {
         for (int i = 0; i <= id; i++) {
-            if (!isOutOfStock()) {
+            if (!isOutOfStock(i)) {
                 System.out.println(nama_makanan[i] + "[" + stok[i] + "]" + "\tRp " + harga_makanan[i]);
             }
         }
     }
     
-    public boolean isOutOfStock() {
+    public boolean isOutOfStock(int id) {
         if (stok[id] == 0) {
             return true;
         } else {
