@@ -20,7 +20,7 @@ public class Produk {
         this.qty = qty;
     }
     
-    // membuat accessor dan mutator
+    // accessor
     public String getNamaProduk() {
         return nama_produk;
     }
@@ -33,20 +33,20 @@ public class Produk {
         return qty;
     }
     
-    // methods
     public static byte getCurrentProdukId() {
         return id;
     }
     
+    // mutator
     public static void nextId() {
         id++;
     }
     
-    public boolean isOutOfStock(int id) {
-        return (qty == 0) ? true : false;
-    }
-    
     public void kurangiQty(int banyak) {
         qty -= banyak;
+    }
+    
+    public boolean isOutOfStock(int id) {
+        return (qty == 0) ? true : false;
     }
 }
