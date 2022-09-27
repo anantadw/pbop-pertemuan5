@@ -20,24 +20,12 @@ public class Penjualan {
         return nama_produk;
     }
 
-    public void setNama_produk(String nama_produk) {
-        this.nama_produk = nama_produk;
-    }
-
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public double getHargaTotal() {
         return harga_total;
-    }
-
-    public void setHarga_total(double harga_total) {
-        this.harga_total = harga_total;
     }
     
     // methods
