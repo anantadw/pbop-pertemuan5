@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.studi.kasus.restoran;
 
 /**
@@ -9,41 +5,68 @@ package com.mycompany.studi.kasus.restoran;
  * @author Ananta D
  */
 public class Restaurant {
-    // (1 always keep data private) modifier dari data/fields dibuat private
-    private String[] nama_makanan;
-    private double[] harga_makanan;
-    private int[] stok;
-    private static byte id = 0;
+    Produk[] makanan;
+    Penjualan[] data_penjualan;
     
-    public Restaurant() {
-        nama_makanan = new String[10];
-        harga_makanan = new double[10];
-        stok = new int[10];
+    public Restaurant(int banyak_menu) {
+        makanan = new Produk[banyak_menu];
+        data_penjualan = new Penjualan[5];
     }
     
     public void tambahMenuMakanan(String nama, double harga, int stok) {
-        this.nama_makanan[id] = nama;
-        this.harga_makanan[id] = harga;
-        this.stok[id] = stok;
+        byte id = Produk.getCurrentProdukId();
+        makanan[id] = new Produk(nama, harga, stok);
+        Produk.nextId();
+    }
+    
+    public void tambahBanyakMenuMakanan(String[][] data_makanan) {
+        for (String[] makanan : data_makanan) {
+            tambahMenuMakanan(makanan[0], Double.parseDouble(makanan[1]), Integer.parseInt(makanan[2]));
+        }
+    }
+    
+    public void tambahDataPenjualan(byte id_makanan, int banyak_beli) {
+        data_penjualan[Penjualan.getCurrentPenjualanId()] = new Penjualan(
+                        makanan[id_makanan].getNamaProduk(), 
+                        banyak_beli, 
+                        makanan[id_makanan].getHarga() * banyak_beli);
+        Penjualan.nextId();
     }
     
     public void tampilMenuMakanan() {
-        for (int i = 0; i <= id; i++) {
-            if (!isOutOfStock(i)) {
-                System.out.println(nama_makanan[i] + "[" + stok[i] + "]" + "\tRp " + harga_makanan[i]);
+        System.out.println("\n========================================");
+        System.out.println("                  Menu                  ");
+        System.out.println("----------------------------------------");
+        for (int i = 0; i < Produk.getCurrentProdukId(); i++) {
+            if (!makanan[i].isOutOfStock(i)) {
+//                System.out.println(makanan[i].getNamaProduk() 
+//                        + "\t[" + makanan[i].getQty() + "]" 
+//                        + "\tRp " + makanan[i].getHarga());
+                System.out.printf("%2d %-15s [%3d] Rp%5.2f%n", i + 1, 
+                        makanan[i].getNamaProduk(), 
+                        makanan[i].getQty(), 
+                        makanan[i].getHarga());
             }
         }
+        System.out.println("========================================");
     }
     
-    public boolean isOutOfStock(int id) {
-        if (stok[id] == 0) {
-            return true;
-        } else {
-            return false;
+    public void tampilDataPenjualan() {
+        double total = 0;
+        
+        System.out.println("\n----------------------------------------");
+        System.out.println("Menu yang dibeli");
+        System.out.println("----------------------------------------");
+        for (int i = 0; i < Penjualan.getCurrentPenjualanId(); i++) {
+            System.out.printf("%d %-15s [%3d] Rp%5.2f%n", i + 1, 
+                    data_penjualan[i].getNamaProduk(),
+                    data_penjualan[i].getQuantity(),
+                    data_penjualan[i].getHargaTotal()
+                    );
+            total += data_penjualan[i].getHargaTotal();
         }
-    }
-    
-    public static void nextId() {
-        id++;
+        System.out.println("----------------------------------------");
+        System.out.println("Total\t\t\t: Rp" + total);
+        System.out.println("----------------------------------------");
     }
 }
