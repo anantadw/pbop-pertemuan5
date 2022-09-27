@@ -10,13 +10,15 @@ public class Restaurant {
     
     public Restaurant(int banyak_menu) {
         makanan = new Produk[banyak_menu];
-        data_penjualan = new Penjualan[2];
+        data_penjualan = new Penjualan[5];
     }
     
     public void tambahMenuMakanan(String[][] data_makanan) {
         for (String[] menu : data_makanan) {
             byte id = Produk.getCurrentProdukId();
-            makanan[id] = new Produk(menu[0], Double.parseDouble(menu[1]), Integer.parseInt(menu[2]));
+            makanan[id] = new Produk(menu[0],
+                    Double.parseDouble(menu[1]),
+                    Integer.parseInt(menu[2]));
             Produk.nextId();
         }
     }

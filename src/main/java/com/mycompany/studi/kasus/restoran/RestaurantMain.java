@@ -35,7 +35,7 @@ public class RestaurantMain {
         while (true) {
             restoran.tampilMenuMakanan();
 
-            if (Penjualan.getCurrentPenjualanId() < 2 ) {
+            if (Penjualan.getCurrentPenjualanId() < 5) {
                 System.out.print("\nPilh menu\t: ");
                 pilihan = input.nextInt();
                 if (pilihan < 1 || pilihan > banyak_menu) {

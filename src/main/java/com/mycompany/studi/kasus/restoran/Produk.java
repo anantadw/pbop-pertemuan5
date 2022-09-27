@@ -6,7 +6,8 @@ package com.mycompany.studi.kasus.restoran;
  */
 public class Produk {
     // (1. always keep data private) modifier dari data/fields dibuat private
-    // fields tidak dibuat array, karena 1 object dari class Produk merepresentasikan 1 makanan
+    // fields tidak dibuat array, karena 1 object dari class Produk 
+    // merepresentasikan 1 makanan
     private String nama_produk;
     private double harga;
     private int qty;
