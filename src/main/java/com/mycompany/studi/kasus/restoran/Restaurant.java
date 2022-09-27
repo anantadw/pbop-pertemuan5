@@ -10,18 +10,14 @@ public class Restaurant {
     
     public Restaurant(int banyak_menu) {
         makanan = new Produk[banyak_menu];
-        data_penjualan = new Penjualan[5];
+        data_penjualan = new Penjualan[2];
     }
     
-    public void tambahMenuMakanan(String nama, double harga, int stok) {
-        byte id = Produk.getCurrentProdukId();
-        makanan[id] = new Produk(nama, harga, stok);
-        Produk.nextId();
-    }
-    
-    public void tambahBanyakMenuMakanan(String[][] data_makanan) {
-        for (String[] makanan : data_makanan) {
-            tambahMenuMakanan(makanan[0], Double.parseDouble(makanan[1]), Integer.parseInt(makanan[2]));
+    public void tambahMenuMakanan(String[][] data_makanan) {
+        for (String[] menu : data_makanan) {
+            byte id = Produk.getCurrentProdukId();
+            makanan[id] = new Produk(menu[0], Double.parseDouble(menu[1]), Integer.parseInt(menu[2]));
+            Produk.nextId();
         }
     }
     
@@ -39,9 +35,6 @@ public class Restaurant {
         System.out.println("----------------------------------------");
         for (int i = 0; i < Produk.getCurrentProdukId(); i++) {
             if (!makanan[i].isOutOfStock(i)) {
-//                System.out.println(makanan[i].getNamaProduk() 
-//                        + "\t[" + makanan[i].getQty() + "]" 
-//                        + "\tRp " + makanan[i].getHarga());
                 System.out.printf("%2d %-15s [%3d] Rp%5.2f%n", i + 1, 
                         makanan[i].getNamaProduk(), 
                         makanan[i].getQty(), 

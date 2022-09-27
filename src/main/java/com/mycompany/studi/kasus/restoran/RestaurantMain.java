@@ -25,7 +25,7 @@ public class RestaurantMain {
         
         int banyak_menu = data_makanan.length;
         Restaurant restoran = new Restaurant(banyak_menu);
-        restoran.tambahBanyakMenuMakanan(data_makanan);
+        restoran.tambahMenuMakanan(data_makanan);
        
         // pemesanan
         Scanner input = new Scanner(System.in);
@@ -35,7 +35,7 @@ public class RestaurantMain {
         while (true) {
             restoran.tampilMenuMakanan();
 
-            if (Penjualan.getCurrentPenjualanId() < 5 ) {
+            if (Penjualan.getCurrentPenjualanId() < 2 ) {
                 System.out.print("\nPilh menu\t: ");
                 pilihan = input.nextInt();
                 if (pilihan < 1 || pilihan > banyak_menu) {
@@ -63,11 +63,12 @@ public class RestaurantMain {
                     break;
                 }
             } else {
-                System.out.println("Sudah mencapai maksimum pembelian (5)\n");
+                System.out.println("\nSudah mencapai maksimum pembelian (5)\n");
                 break;
             }
         }
         
+        System.out.println("\n========================================\n");
         System.out.println("Konfirmasi Pesanan");
         restoran.tampilDataPenjualan();
     }
