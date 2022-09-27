@@ -46,7 +46,7 @@ public class Produk {
         qty -= banyak;
     }
     
-    public boolean isOutOfStock(int id) {
+    public boolean isOutOfStock() {
         return (qty == 0) ? true : false;
     }
 }

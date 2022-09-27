@@ -33,18 +33,19 @@ public class Restaurant {
     }
     
     public void tampilMenuMakanan() {
-        System.out.println("\n========================================");
+        System.out.println("\n======================================");
         System.out.println("                  Menu                  ");
         System.out.println("----------------------------------------");
+        System.out.println(" 0 [Batalkan pesanan]");
         for (int i = 0; i < Produk.getCurrentProdukId(); i++) {
-            if (!makanan[i].isOutOfStock(i)) {
+            if (!makanan[i].isOutOfStock()) {
                 System.out.printf("%2d %-15s [%3d] Rp%5.2f%n", i + 1, 
                         makanan[i].getNamaProduk(), 
                         makanan[i].getQty(), 
                         makanan[i].getHarga());
             }
         }
-        System.out.println("========================================");
+        System.out.println("=========================================");
     }
     
     public void tampilDataPenjualan() {

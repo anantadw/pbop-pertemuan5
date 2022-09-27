@@ -11,7 +11,7 @@ public class RestaurantMain {
     public static void main(String[] args) {
         // menambahkan menu
         String[][] data_makanan = {
-            {"Tahu", "2000", "30"},
+            {"Tahu", "2000", "1"},
             {"Tempe", "2000", "30"},
             {"Telur", "4000", "25"},
             {"Ayam Goreng", "12000", "25"},
@@ -38,8 +38,16 @@ public class RestaurantMain {
             if (Penjualan.getCurrentPenjualanId() < 5) {
                 System.out.print("\nPilh menu\t: ");
                 pilihan = input.nextInt();
-                if (pilihan < 1 || pilihan > banyak_menu) {
+                if (pilihan == 0) {
+                    System.out.println("Pesanan dibatalkan.\n");
+                    break;
+                } else if (pilihan < 0 || pilihan > banyak_menu) {
                     System.out.println("Tidak ada di pilihan.\n");
+                    continue;
+                }
+                
+                if (restoran.makanan[pilihan - 1].getQty() == 0) {
+                    System.out.println("Maaf stok habis.\n");
                     continue;
                 }
 
